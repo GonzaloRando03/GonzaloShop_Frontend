@@ -1,0 +1,402 @@
+header{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    position: absolute;
+    z-index: 4;
+}
+
+input{
+    all: unset;
+    background-color: var(--bg-color);
+    padding: 1px;
+    color: black;
+}
+
+.mainIcon{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+header form{
+    width: 100%;
+    display: flex;
+}
+
+.search{
+    width: 75%;
+    margin-left: 12%;
+    margin-top: 15px;
+    height: 30px;
+    border: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+
+.searchIcon{
+    margin-top: 15px;
+    font-size: 25px;
+    background-color:  var(--secondary-color);
+    border: 0px;
+    height: 32px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.searchIcon:focus{
+    background-color:  var(--secondary-color-hover);
+}
+
+.identify{
+    width: 15%;
+    font-size: 90%;
+    margin-top: 22px;
+    color: var(--bg-color);
+}
+
+.identify:hover{
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.volver{
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.volver:hover{
+    background-color: var(--primary-color-hover);
+    cursor: pointer;
+}
+
+.footerLogo{
+    background-color: var(--bg-dark);
+    color: var(--secondary-color);
+    width: 100%;
+}
+
+.credits{
+    background-color: var(--bg-dark);
+    color: var(--bg-color);
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    border-top: 1px solid rgb(71, 71, 71);
+}
+
+.home{
+    background-color: var(--bg-color-secondary);
+    width: 100%;
+}
+
+.slider {
+    padding-top: 4pc;
+    margin-top: 90vh;
+    display: flex;
+    width: 80%;
+    height: 90vh;
+    position: absolute;
+    z-index: 1;
+}
+
+.slider img{
+    width: 100%;
+    /* para que la imagen se adapte al div */
+    object-fit: cover;
+}
+
+.slider button{
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 50px;
+    height: 40vh;
+}
+
+.slider button:hover{
+    color: var(--primary-color-hover);
+}
+
+.rightChervon{
+    transform: translate(-4pc);
+}
+
+.leftChervon{
+    transform: translate(4pc);
+}
+
+.productsHome{
+    margin-top: 20pc;
+    z-index: 4;
+    position: relative;
+    width: 75%;
+    margin-left: 3%;
+}
+
+.productTable{
+    width: 22%;
+    background-color: var(--bg-color);
+    margin: 1%;
+}
+
+.productsHome img {
+    width: 90%;
+    margin-left: 5%;
+    height: 90%;
+    object-fit: cover;
+    margin-bottom: 5%;
+}
+
+.productsHome h3 {
+    margin-left: 5%;
+}
+
+.oferts{
+    width: 70.5%;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    background-color: var(--bg-color);
+}
+
+.oferts h2{
+    margin-left: 30px;
+}
+
+.oferts img{
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.ofert{
+    width: 20%;
+    text-align: center;
+}
+
+.fadeAnimation{
+    animation-duration: .5s;
+    animation-name: fade;
+}
+
+.fadeAnimation5{
+    animation-duration: .5s;
+    animation-name: fade5;
+}
+
+.blackTransparentBg{
+    position: fixed;
+    top: 0;
+    background-color: black;
+    opacity: .7;
+    width: 100%;
+    height: 100vh;
+    z-index: 9;
+}
+
+.login{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+}
+
+.loginForm{
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    margin-top: 30vh;
+}
+
+.loginForm input{
+    border: 0px;
+    height: 20px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.loginForm button{
+    background-color: var(--secondary-color);
+    border: 0px;
+    padding: 5px;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.loginForm button:active{
+    background-color: var(--secondary-color-hover);
+}
+
+
+.loginIcon{
+    font-size: 30px;
+    margin-top: 17px;
+    margin-right: 10px;
+}
+
+.quitLogin{
+    position: fixed;
+    right: 0;
+    margin: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+.registerLink{
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+.registerLink:hover{
+    color: var(--secondary-color);
+}
+
+.registerForm{
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    width: 20pc;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.registerForm h2{
+    font-weight: 400;
+}
+
+.registerForm input{
+    height: 20px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(129, 129, 129);
+}
+
+.registerForm button{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.registerForm button:hover{
+    background-color: var(--primary-color-hover);
+}
+
+.registerTitle{
+    margin-left: 25%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.avisoRegister{
+    font-size: 12px;
+}
+
+.registerVolver{
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.error{
+    color: rgb(189, 31, 31);
+}
+
+.username{
+    text-align: center;
+    width: 20%;
+    font-size: 15px;
+    color: white;
+    margin-top: 25px;
+}
+
+.username:hover{
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.userInfoIcon{
+    font-size: 17px;
+}
+
+.infoHeader{
+    margin-right: 15px;
+}
+
+.addWallet{
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.money{
+    font-size: 40px;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px rgb(204, 203, 203) solid;
+    text-align: center;
+}
+
+.money:hover{
+    box-shadow: 13px 19px 13px -13px rgba(0,0,0,0.1);
+    background-color: rgb(236, 236, 236);
+}
+
+.delete{
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: rgb(233, 73, 73);
+}
+
+
+
+@keyframes fade {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}
+
+@keyframes fade5 {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: .7;
+    }
+}

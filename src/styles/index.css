@@ -1,0 +1,208 @@
+:root{
+  --bg-color: #F4F4F6;
+  --bg-color-secondary: #dededf;
+  --bg-dark: #2c2c2c;
+  --primary-color: #0353A4;
+  --primary-color-hover:#2270be;
+  --secondary-color:#88d1fc;
+  --secondary-color-hover:#4cb2ee;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a:link, a:visited,  a:hover, a:active
+{
+    text-decoration: none;
+}
+
+input{
+  background-color: var(--bg-color);
+}
+
+.color-primary{
+  color: var(--primary-color);
+}
+
+.color-secondary{
+  color: var(--secondary-color);
+}
+
+.text-center{
+  text-align: center;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
+}
+
+.flexCol{
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}
+
+.block{
+  display: block;
+}
+
+.full{
+  width: 100%;
+}
+
+.padding{
+  padding: 1pc;
+}
+
+.lm1{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.mt{
+  margin-top: 5pc;
+}
+
+.mt1{
+  margin-top: 10px;
+}
+
+.mt2{
+  margin-top: 20px;
+}
+
+.mt3{
+  margin-top: 30px;
+}
+
+.mt4{
+  margin-top: 40px;
+}
+
+.mt5{
+  margin-top: 50px;
+}
+
+.mt6{
+  margin-top: 60px;
+}
+
+.mt7{
+  margin-top: 70px;
+}
+
+.mt8{
+  margin-top: 80px;
+}
+
+.mt9{
+  margin-top: 90px;
+}
+
+.mt10{
+  margin-top: 100px;
+}
+
+.ml1{
+  margin-left: 10px;
+}
+
+.ml2{
+  margin-left: 20px;
+}
+
+.ml3{
+  margin-left: 30px;
+}
+.ml4{
+  margin-left: 40px;
+}
+.ml5{
+  margin-left: 50px;
+}
+.ml6{
+  margin-left: 60px;
+}
+
+.ml7{
+  margin-left: 70px;
+}
+
+.ml8{
+  margin-left: 80px;
+}
+
+.ml9{
+  margin-left: 90px;
+}
+
+.ml10{
+  margin-left: 100px;
+}
+
+.mr1{
+  margin-right: 10px;
+}
+
+.mr2{
+  margin-right: 20px;
+}
+
+.mr3{
+  margin-right: 30px;
+}
+.mr4{
+  margin-right: 40px;
+}
+.mr5{
+  margin-right: 50px;
+}
+.mr6{
+  margin-right: 60px;
+}
+
+.mr7{
+  margin-right: 70px;
+}
+
+.mr8{
+  margin-right: 80px;
+}
+
+.mr9{
+  margin-right: 90px;
+}
+
+.mr10{
+  margin-right: 100px;
+}
+
+.mb{
+  margin-bottom: 10pc;
+}
+
+.mb-1{
+  margin-bottom: 10px;
+}
