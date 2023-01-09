@@ -44,6 +44,21 @@ const User:React.FC<LoginPropsTypes> = props => {
     toastInfo('Sesión cerrada correctamente')
   }
 
+  async function deleteUser(token:string){
+    try{
+      const response = await userService.delUser(token)
+      console.log(response)
+      window.localStorage.removeItem('user')
+      props.setMenu(false)
+      props.setUser(null)
+      toastInfo('Usuario eliminado correctamente')
+
+    }catch(error:any){
+      const errorText: string = error.response.data.error
+      toastError(errorText)
+    }
+  }
+
 
 
   return (
@@ -81,7 +96,7 @@ const User:React.FC<LoginPropsTypes> = props => {
           </button>
 
           {deleteAcount? <section>
-            Los cambios no serán reversibles, si está seguro que quiere <br/> eliminar su cuenta pulse <b className='delete'>eliminar</b>.
+            Los cambios no serán reversibles, si está seguro que quiere <br/> eliminar su cuenta pulse <b onClick={()=>deleteUser(props.user.token)} className='delete'>eliminar</b>.
           </section>:null}
 
         </section>

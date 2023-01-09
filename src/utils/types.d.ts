@@ -16,6 +16,25 @@ export interface User{
     bank_account: string
 }
 
+export interface Product{
+    name: string
+    price: number
+    category: string
+    description: string
+    features: any
+    images: string[]
+    brand: string
+    type: string
+    valorations: Valoration[]
+    sale: boolean
+}
+
+export interface Valoration{
+    username: string
+    text: string
+    stars: number
+}
+
 export interface LoginData{
     username: string
     password: string
