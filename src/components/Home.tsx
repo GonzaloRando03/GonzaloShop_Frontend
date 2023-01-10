@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Product } from "../utils/types";
+import { QueryResult, useQuery } from "@apollo/client";
+import { PRODUCTS_HOME, PRODUCTS_HOME_OFFERT } from "../services/productsQueries";
+import Slider from "./Slider";
 import imagen from "../img/balon.jpg"
 import fondo from "../img/716760.png"
 import a from "../img/a.png"
-import Slider from "./Slider";
-import { Product } from "../utils/types";
+import HomeLoader from "./HomeLoader";
+
+
 
 
 
 const Products: React.FC = () =>{
-    const [products, setProducts] = useState<Product[]>([])
+    const res: QueryResult<any> = useQuery(PRODUCTS_HOME)
 
-    useEffect(()=>{
+    if (res.loading){
+        return <HomeLoader/>
+    }
 
-    },[])
+    const products:Product[] = res.data.getProducts
 
-    const productss = [{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'}]
     const column1 = products.slice(0, 4);
     const column2 = products.slice(4);
 
@@ -23,14 +29,14 @@ const Products: React.FC = () =>{
         <section className="productsHome">
             <div className="flex">
                 {column1.map((p, i) => <div key={i} className="productTable flexCol">
-                    <h3>Producto</h3>
-                    <img src={p.images[0]} alt="producto"/>
+                    <h4>{p.name}</h4>
+                    <img src={p.image} alt={p.name}/>
                 </div>)}
             </div>
             <div className="flex">
                 {column2.map((p, i) => <div key={i} className="productTable flexCol">
-                    <h3>Producto</h3>
-                    <img src={p.images[0]} alt="producto"/>
+                    <h4>{p.name}</h4>
+                    <img src={p.image} alt={p.name}/>
                 </div>)}
             </div>
         </section>
@@ -39,15 +45,20 @@ const Products: React.FC = () =>{
 
 
 const Oferts: React.FC = () =>{
-    const products = [{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'},{image: imagen, title: 'producto'}]
+    const res: QueryResult<any> = useQuery(PRODUCTS_HOME_OFFERT)
+
+    if (res.loading){
+        return <HomeLoader/>
+    }
+
+    const products:Product[] = res.data.getProducts
 
     return(
         <div className="oferts">
             <h2>Ofertas</h2>
             <div className="flex">
                 {products.map((p, i) => <div key={i} className="ofert"> 
-                    <img src={p.image} alt={p.title}/>
-                    <h3>{p.title}</h3>
+                    <img src={p.image} alt={p.name}/>
                 </div>)}
             </div>
         </div>

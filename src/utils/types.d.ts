@@ -17,12 +17,14 @@ export interface User{
 }
 
 export interface Product{
+    id: string
     name: string
     price: number
     category: string
     description: string
     features: any
     images: string[]
+    image: string
     brand: string
     type: string
     valorations: Valoration[]

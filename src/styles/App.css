@@ -1,3 +1,42 @@
+.homeLoader{
+    width: 100%;
+    height: 250vh;
+    position: fixed;
+    z-index: 5;
+    background-color: var(--bg-color);
+}
+
+.homeLoaderTitle{
+    margin-top: 30pc;
+    text-align: center;
+}
+
+.loaderTitle{
+    color: var(--primary-color);
+    width: 10pc;
+    text-align: center;
+}
+
+.loader{
+    margin-top: 30vh;
+    width: 4pc;
+    height: 4pc;
+    border-radius: 50%;
+    border: var(--primary-color) solid 5px;
+    border-left-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-left: 2.5pc;
+}
+
+@keyframes spin{
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+
 header{
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -152,6 +191,7 @@ header form{
     width: 22%;
     background-color: var(--bg-color);
     margin: 1%;
+    cursor: pointer;
 }
 
 .productsHome img {
@@ -162,8 +202,9 @@ header form{
     margin-bottom: 5%;
 }
 
-.productsHome h3 {
+.productsHome h4 {
     margin-left: 5%;
+    margin-right: 5%;
 }
 
 .oferts{
@@ -186,6 +227,7 @@ header form{
 .ofert{
     width: 20%;
     text-align: center;
+    cursor: pointer;
 }
 
 .fadeAnimation{
