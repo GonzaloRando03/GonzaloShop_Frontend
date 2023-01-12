@@ -1,14 +1,11 @@
 import React from "react";
 import { Product } from "../utils/types";
+import { HomeLoader } from "./Loaders";
 import { QueryResult, useQuery } from "@apollo/client";
 import { PRODUCTS_HOME, PRODUCTS_HOME_OFFERT } from "../services/productsQueries";
 import Slider from "./Slider";
-import imagen from "../img/balon.jpg"
 import fondo from "../img/716760.png"
 import a from "../img/a.png"
-import HomeLoader from "./HomeLoader";
-
-
 
 
 

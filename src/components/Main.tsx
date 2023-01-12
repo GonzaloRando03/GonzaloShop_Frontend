@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import Login from "./Login"
-import { Children } from "../utils/types"
+import { Children, FormEvent } from "../utils/types"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faMagnifyingGlass, faUser, faWallet } from '@fortawesome/free-solid-svg-icons'
 import User from "./User"
+import { useNavigate } from "react-router"
 
 
  
@@ -13,6 +14,12 @@ const Main: React.FC<Children> = props => {
     const [login, setLogin] = useState<boolean>(false)
     const [menu, setMenu] = useState<boolean>(false)
     const [user, setUser] = useState<any>(null)
+    const navigate = useNavigate()
+
+    function handleHome(event:React.MouseEvent<HTMLDivElement>){
+        event.preventDefault()
+        navigate('/home')
+    }
 
     useEffect(()=>{
         let userStorage:string | null = window.localStorage.getItem('user')
@@ -27,7 +34,7 @@ const Main: React.FC<Children> = props => {
     return(
         <div>
             <header>
-                <div className="flex">
+                <div className="flex pointer" onClick={(e)=>handleHome(e)}>
                     <h2>GonzaloShop</h2>
                     <FontAwesomeIcon icon={faCartShopping} className='mainIcon'/>
                 </div>

@@ -76,6 +76,10 @@ input{
   padding: 1pc;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .lm1{
   margin-left: 10px;
   margin-right: 10px;

@@ -48,6 +48,7 @@ header{
     z-index: 4;
 }
 
+
 input{
     all: unset;
     background-color: var(--bg-color);
@@ -118,6 +119,10 @@ header form{
 .volver:hover{
     background-color: var(--primary-color-hover);
     cursor: pointer;
+}
+
+footer{
+    position: relative;
 }
 
 .footerLogo{
@@ -421,6 +426,80 @@ header form{
     color: rgb(233, 73, 73);
 }
 
+
+.lateralPanel{
+    width: 18%;
+    padding: 2%;
+    padding-bottom: 10pc;
+    padding-top: 20px;
+    border-right: 1px solid var(--bg-color-secondary);
+    position: fixed;
+}
+  
+.categorySelect{
+    background-color: var(--bg-color-secondary);
+    padding: 2px;
+    border-radius: 10px;
+    border: 0px;
+}
+  
+.mt6 .inputPrice{
+    margin-left: 10px;
+    background-color: var(--bg-color-secondary);
+    padding: 2px;
+    border-radius: 10px;
+    border: 0px;
+    width: 40%;
+}
+  
+.filterApply{
+    background-color: var(--bg-color-secondary);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0px;
+    margin-top: 20vh;
+}
+  
+.saleButton{
+    background-color: var(--bg-color-secondary);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0px;
+}
+  
+.productsResults{
+    width: 77%;
+    margin-top: 80px;
+    margin-left: 23%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-flow: wrap;
+}
+  
+.productSearhed{
+    border: solid var(--bg-color-secondary) 1px;
+    border-radius: 10px;
+    width: 24%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+  
+.productSearhed .center {
+    width: 100%;
+    height: 40vh;
+    background-color: var(--bg-color-secondary);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+  
+.productSearhed img{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+}
 
 
 @keyframes fade {

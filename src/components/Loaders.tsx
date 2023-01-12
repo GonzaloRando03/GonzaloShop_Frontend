@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
-const HomeLoader:React.FC = () => {
+export const HomeLoader:React.FC = () => {
 
   return (
     <div className='homeLoader center'>
@@ -22,4 +22,4 @@ const HomeLoader:React.FC = () => {
   );
 }
 
-export default HomeLoader;
+

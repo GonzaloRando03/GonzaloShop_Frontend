@@ -5,7 +5,7 @@ export interface Children{
 
 //tipos de datos para eventos
 export type Event = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >
-export type FormEvent = React.FormEvent<HTMLFormElement>
+export type FormEvent = React.FormEvent<HTMLFormElement | HTMLButtonElement>
 
 export interface User{
     name: string
@@ -27,6 +27,7 @@ export interface Product{
     image: string
     brand: string
     type: string
+    stars: number
     valorations: Valoration[]
     sale: boolean
 }
@@ -53,4 +54,8 @@ export interface LoginResponse{
         descuento: number
     }
     token: string
+}
+
+interface ProductProp{
+    product:Product
 }

@@ -5,6 +5,7 @@ import Main from './components/Main';
 import Home from './components/Home';
 import Register from './components/Register';
 import { ToastContainer } from 'react-toastify';
+import Products from './components/Products';
 
 
 const App:React.FC = () => {
@@ -14,6 +15,7 @@ const App:React.FC = () => {
       <Routes>
         <Route path='/' element={<Main><Home/></Main>}/>
         <Route path='/home' element={<Main><Home/></Main>}/>
+        <Route path='/products' element={<Main><Products/></Main>}/>
         <Route path='/register' element={<Register/>}/>
       </Routes>
       <ToastContainer

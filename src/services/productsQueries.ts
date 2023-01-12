@@ -31,3 +31,22 @@ export const PRODUCTS_HOME_OFFERT = gql`
         }
     }
 `
+
+export const PRODUCTS_SEARCH = gql`
+    query{
+        getProducts{
+            __typename
+            ... on Product {
+                id
+                brand
+                stars
+                name
+                image
+                price
+            }
+            ... on Error {
+                error
+            }
+        }
+    }
+`
