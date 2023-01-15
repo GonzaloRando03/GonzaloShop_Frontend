@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faMagnifyingGlass, faUser, faWallet } from '@fortawesome/free-solid-svg-icons'
 import User from "./User"
 import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
 
  
@@ -14,12 +15,8 @@ const Main: React.FC<Children> = props => {
     const [login, setLogin] = useState<boolean>(false)
     const [menu, setMenu] = useState<boolean>(false)
     const [user, setUser] = useState<any>(null)
+    const [searchTitle, setSearch] = useState<string>("")
     const navigate = useNavigate()
-
-    function handleHome(event:React.MouseEvent<HTMLDivElement>){
-        event.preventDefault()
-        navigate('/home')
-    }
 
     useEffect(()=>{
         let userStorage:string | null = window.localStorage.getItem('user')
@@ -31,18 +28,35 @@ const Main: React.FC<Children> = props => {
       },[])
 
 
+    function handleSearch(event:FormEvent){
+        event.preventDefault()
+        if (searchTitle === ""){
+            navigate('/products')
+        }else{
+            navigate(`/products/${searchTitle}`)
+        }
+    }
+
+
     return(
         <div>
             <header>
-                <div className="flex pointer" onClick={(e)=>handleHome(e)}>
+                <Link className="flex pointer noDecoration" to={'/home'}>
                     <h2>GonzaloShop</h2>
                     <FontAwesomeIcon icon={faCartShopping} className='mainIcon'/>
-                </div>
+                </Link>
                 <form>
-                    <input type='text' className="search"/>
-                    <button className='searchIcon'>
-                        <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                    </button>
+                    <input  type='text' 
+                            className="search"
+                            value={searchTitle}
+                            onChange={(e)=>{
+                                setSearch(e.target.value)
+                            }}/>
+                    <Link to={`/products/${searchTitle}`}>
+                        <button className='searchIcon' type="submit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                        </button>
+                    </Link>
                 </form>
                 {
                     user? <span className="username flex" onClick={() => setMenu(true)}>
