@@ -19,18 +19,18 @@ export interface User{
 export interface Product{
     id: string
     name: string
-    price: number
-    category: string
-    description: string
-    features: any
+    price?: number
+    category?: string
+    description?: string
+    features?: any
     images: string[]
     image: string
-    brand: string
-    type: string
+    brand?: string
+    type?: string
     stars: number
-    valorations: Valoration[]
-    sale: boolean
-    error: string
+    valorations?: Valoration[]
+    sale?: boolean
+    error?: string
 }
 
 export interface Valoration{

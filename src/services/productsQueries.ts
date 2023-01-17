@@ -49,3 +49,45 @@ query($search: String, $amount: Int, $sale: Boolean, $price: [Float], $category:
     }
 }
 `
+
+export const GET_ONE_PRODUCT = gql`
+query($id: String!){
+    getProductOne( ident: $id ){
+        __typename
+        ... on Product {
+            id
+            name
+            description
+            features{
+                colors
+                height
+                width
+                length
+                conectors
+                batery
+                pantalla
+                resolucion
+                OS
+                RAM
+                size
+                material
+                filtro
+                alimentacion
+                capacidad
+            }
+            valorations{
+                username
+                text
+                stars
+            }
+            images
+            brand
+            price
+            stars
+        }
+        ... on Error {
+            error
+        }
+    }
+}
+`

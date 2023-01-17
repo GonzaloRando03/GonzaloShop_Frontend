@@ -3,122 +3,31 @@ import { Product, ProductProp, FormEvent } from "../utils/types";
 import { useLazyQuery } from "@apollo/client";
 import { PRODUCTS_SEARCH } from "../services/productsQueries";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { toastError } from '../utils/toast';
+import LateralPanel from './LateralPanelProducts';
+import { ProductsLoader } from './Loaders';
+import { Link } from 'react-router-dom';
+import Stars from './Stars';
 
 
-interface PanelProps{
-    handleSubmit: any
-    setRadio: any
-    setCategory: any
-    setOrder: any
-    setMaxPrice: any
-    setMinPrice: any
-    radio: boolean
-    handleSale: any
-}
-
-const LateralPanel:React.FC<PanelProps> = ({
-    handleSubmit, 
-    radio, 
-    handleSale, 
-    setCategory, 
-    setOrder, 
-    setMaxPrice, 
-    setMinPrice
-
-}) =>(<div className="flex">
-        <section className="lateralPanel">
-        <div className='flex color-primary'>
-            <h2>GonzaloShop</h2>
-            <FontAwesomeIcon icon={faCartShopping} className='mainIcon'/>
-        </div>
-        <h1>Filtros</h1>
-        <form onSubmit={(e)=>handleSubmit(e)}>
-            <button type='submit' className="filterApply">
-                Aplicar filtros
-            </button>
-            <div>
-                <h4>Categoría</h4>
-                <select className="categorySelect" 
-                        onChange={(e)=>{
-                            setCategory(e.target.value)
-                    }
-                }>          
-                    <option>Todas las categorías</option>
-                    <option>Tecnología</option>
-                    <option>Hogar</option>
-                    <option>Ropa</option>
-                    <option>Complementos</option>
-                    <option>Juguetes</option>
-                    <option>Cocina</option>
-                </select>
-            </div>
-            <div className="mt6 ">
-                <h4>Ordenar por</h4>
-                <select className="categorySelect"
-                        onChange={(e)=>{
-                            setOrder(e.target.value)
-                    }
-                }>
-                    <option>Destacados</option>
-                    <option>Precio más bajo</option>
-                    <option>Precio más alto</option>
-                    <option>Valoración</option>
-                </select>
-            </div>
-            <div className="mt6">
-                <h4>Precio</h4>
-                <div >
-                    Precio mínimo 
-                    <input  className="inputPrice" 
-                            type="number" 
-                            placeholder=" Precio en €" 
-                            onChange={(e)=>{setMinPrice(parseInt(e.target.value))}}
-                    />
-                </div>
-                <div className="mt2">
-                    Precio máximo 
-                    <input  className="inputPrice mt1" 
-                            type="number" 
-                            placeholder=" Precio en €" 
-                            onChange={(e)=>{setMaxPrice(parseInt(e.target.value))}}
-                    />  
-                </div>
-            </div>
-            <div className="mt6">
-                <h4>Ofertas</h4>
-                <button onClick={(e)=>handleSale(e)} 
-                        className='saleButton'>
-                    {radio? "Todos los productos": "Solo ofertas"}
-                </button>
-                
-            </div>
-        </form>
-        </section>
-    </div>
-)
-
-
-
-const ProductOne:React.FC<ProductProp> = ({ product }) => <div className="productSearhed">
-    <div className="center">
+const ProductOne:React.FC<ProductProp> = ({ product }) => <Link to={`/product/${product.id}`} className="productSearhed">
+    <div className="center image">
         <img src={product.image} alt={product.name}/>
     </div>
     <div className="text-center">
         <h4>{product.brand}</h4>
         <p>{product.name}</p>
-
-        {product.hasOwnProperty('stars')
-            ?product.stars.toFixed(1)
-            :null
-        }
-        
-        <FontAwesomeIcon icon={faStar} className='starProductMenu'/>
+        <div className='center'>
+            {product.hasOwnProperty('stars')
+                ?<Stars number={product.stars}/>
+                :null
+            }
+        </div>
         <h2>{product.price}€</h2>
     </div>
-</div>
+</Link>
 
 
 
@@ -180,7 +89,15 @@ const Products:React.FC = () => {
 
 
     if(result.loading){
-        return null
+        return(
+            <div>
+              <LateralPanel handleSubmit={null} setCategory={null} 
+                            setMaxPrice={null} setMinPrice={null} 
+                            setOrder={null} setRadio={null} radio={false}
+                            handleSale={null}/>
+                <ProductsLoader/>
+            </div>
+        )
     }
 
     
@@ -209,7 +126,7 @@ const Products:React.FC = () => {
 
 
     return (
-        <div>
+        <div className='mb-15'>
             <LateralPanel   handleSubmit={handleSubmitFilters} setCategory={setCategory} 
                             setMaxPrice={setMaxPrice} setMinPrice={setMinPrice} 
                             setOrder={setOrder} setRadio={setRadio} radio={radio}

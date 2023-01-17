@@ -44,6 +44,7 @@ header{
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
+    top: 0;
     position: absolute;
     z-index: 4;
 }
@@ -126,7 +127,18 @@ header form{
 
 footer{
     position: relative;
-    bottom: 0px;
+}
+
+.mb-15{
+    margin-bottom: 180px;
+}
+
+.productsLink{
+    text-align: center;
+    background-color: rgb(248, 248, 248);
+    margin-top: 10px;
+    width: 40%;
+    color: black;
 }
 
 .footerLogo{
@@ -490,9 +502,11 @@ footer{
     width: 24%;
     margin-bottom: 10px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
   
-.productSearhed .center {
+.productSearhed .image {
     width: 100%;
     height: 40vh;
     background-color: var(--bg-color-secondary);
@@ -512,6 +526,147 @@ footer{
     color: rgb(236, 187, 26);
 }
 
+
+.miniImagesDiv{
+    width: 5%;
+    margin-left: 1%;
+  }
+  
+  .contentProduct{
+    width: 88%;
+    margin-left: 1%;
+    display: flex;
+  }
+  
+  .miniImage{
+    border: 1px solid var(--bg-color-secondary);
+    padding: 2px;
+    width: 95%;
+    height: 10vh;  
+    object-fit: cover;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .miniImage img{
+    width: 95%;
+    height: 10vh;
+    object-fit: cover;
+  }
+  
+  .principImage{
+    border: 1px solid var(--bg-color-secondary);
+    width: 50%;
+    height: 90vh;
+    object-fit: cover;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .principImage img{
+    width: 100%;
+    height: 90vh;
+    object-fit: cover ;
+  }
+  
+  .productData{
+    width: 45%;
+    height: 90vh;
+    padding-top: 0px;
+    padding: 1%;
+  }
+  
+  .productData p{
+    margin-bottom: 0px;
+  }
+  
+  .productPrice{
+    font-size: 22px;
+  }
+  
+  .stars{
+    color: orange;
+  }
+  
+  .productData h3{
+    margin-bottom: 10px;
+  }
+  
+  .lineDown{
+    border-bottom: 1px solid var(--bg-color-secondary);
+    margin-top: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .buy{
+    background-color: var(--primary-color);
+    color: white;
+    width: 30%;
+    margin-top: 50px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .buy:active{
+    background-color: var(--primary-color-hover);
+  }
+  
+  .addValoration{
+    background-color: rgb(158, 157, 157);
+    color: white;
+    width: 30%;
+    margin-top: 0px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .addValoration:active{
+    background-color: grey;
+  }
+  
+  .features{
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+    margin-top: 10px;
+  }
+
+  .grey{
+    color: grey;
+  }
+
+  .orange{
+    color: orange;
+  }
+
+.productOneValorations{
+    border-top: solid 1px var(--bg-color-secondary);
+    margin-top: 50px;
+    padding-left: 20px;
+}
+
+.productOneValorations h3{
+    margin: 0px;
+    margin-top: 20px;
+}
+
+.productOneValorations div h4{
+    margin: 0px;
+    margin-top: 20px;
+}
+
+.productOneValorations span{
+    margin-bottom: 200px;
+}
+
+.lineDown .ml1{
+    font: 15px sans-serif;
+}
 
 @keyframes fade {
     from {

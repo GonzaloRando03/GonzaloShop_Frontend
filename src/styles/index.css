@@ -80,6 +80,11 @@ input{
   cursor: pointer;
 }
 
+.noLink{
+  color: black;
+  text-decoration: none;
+}
+
 .lm1{
   margin-left: 10px;
   margin-right: 10px;
@@ -209,4 +214,19 @@ input{
 
 .mb-1{
   margin-bottom: 10px;
+}
+
+.mb2{
+  margin-bottom: 20px;
+}
+
+.mb-5{
+  margin-bottom: 50px;
+}
+.mb-10{
+  margin-bottom: 100px;
+}
+
+.mb-15{
+  margin-bottom: 150px;
 }
