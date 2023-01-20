@@ -91,3 +91,18 @@ query($id: String!){
     }
 }
 `
+
+
+export const ADD_VALORATION = gql`
+mutation($name: String!, $username: String!, $stars: Int!){
+    addValoration(ident: $name, username: $username, stars: $stars){
+        __typename
+        ... on Product {
+            name
+        }
+        ... on Error {
+            error
+        }
+    }
+}
+`

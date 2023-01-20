@@ -201,7 +201,7 @@ footer{
 }
 
 .productsHome{
-    margin-top: 20pc;
+    margin-top: 40vh;
     z-index: 4;
     position: relative;
     width: 75%;
@@ -561,6 +561,7 @@ footer{
     object-fit: cover;
     cursor: pointer;
     margin-top: 5px;
+    margin-bottom: 50px;
   }
   
   .principImage img{
@@ -571,7 +572,6 @@ footer{
   
   .productData{
     width: 45%;
-    height: 90vh;
     padding-top: 0px;
     padding: 1%;
   }
@@ -667,6 +667,37 @@ footer{
 .lineDown .ml1{
     font: 15px sans-serif;
 }
+
+.valorationForm{
+    margin-top: 50px;
+    padding: 10px;
+    border: 1px solid var(--bg-color-secondary);
+}
+
+.valorationText{
+    margin-top: 10px;
+    resize: none;
+    height: 10vh;
+}
+
+.valorationStars{
+    margin-left: 10px;
+}
+
+.sendValoration{
+    background-color: var(--primary-color);
+    color: white;
+    width: 30%;
+    margin-top: 10px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .sendValoration:active{
+    background-color: var(--primary-color-hover);
+  }
 
 @keyframes fade {
     from {

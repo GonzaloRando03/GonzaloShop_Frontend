@@ -3,31 +3,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { GET_ONE_PRODUCT } from "../services/productsQueries";
 import { toastError } from "../utils/toast";
-import { Product, Valoration } from "../utils/types";
+import { Product } from "../utils/types";
 import Features from "./Features";
 import { ProductsLoader } from "./Loaders";
+import { ValorationForm, Valorations } from "./ProductValoration";
 import Stars from "./Stars";
 
-
-
-interface ValorationsProps{
-    valorations: Valoration[]
-}
-
-const Valorations:React.FC<ValorationsProps> = props =>{
-    return(<div className="productOneValorations">
-        <h3>Valoraciones</h3>
-        {props.valorations.map((v,i) => <div key={i}>
-            <h4 className="flex">{v.username} &nbsp; <Stars number={v.stars}/></h4>
-            <div className="mb-5"><span>{v.text}</span></div>
-        </div>)}
-    </div>)
-}
 
 
 const ProductOne:React.FC = () => {
     const [getProduct, result] = useLazyQuery(GET_ONE_PRODUCT) 
     const [imageIndex, setImageIndex] = useState<number>(0)
+    const [enableValorationForm, setValorationForm] = useState<boolean>(false)
     const [product, setProduct] = useState<Product>({
         id: "",
         name: "",
@@ -112,8 +99,17 @@ const ProductOne:React.FC = () => {
                         ?product.features
                         :{}}/>
                     <button className="buy">Comprar ahora</button><br/>
-                    <button className="addValoration">Añadir valoración</button>
-                    
+                    <button className="addValoration"
+                        onClick={
+                            ()=>setValorationForm(!enableValorationForm)
+                    }>{
+                        enableValorationForm? "Cancelar valoración":"Añadir valoración"
+                    }</button>
+                    {
+                        enableValorationForm
+                            ?<ValorationForm/>
+                            :null
+                    }
                     <Valorations valorations={product.valorations
                         ?product.valorations
                         :[]}/>
