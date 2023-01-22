@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Product, ProductProp, FormEvent } from "../utils/types";
 import { useLazyQuery } from "@apollo/client";
 import { PRODUCTS_SEARCH } from "../services/productsQueries";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { toastError } from '../utils/toast';
 import LateralPanel from './LateralPanelProducts';
@@ -75,11 +73,6 @@ const Products:React.FC = () => {
 
     //Effecto para error en la búsqueda
     useEffect(()=>{
-        setRadio(false)
-        setCategory("Todas las categorías")
-        setOrder("")
-        setMaxPrice(1000000)
-        setMinPrice(0)
         const productOne = {...products[0]}
         if (productOne.hasOwnProperty('error')) {
             toastError('No hay productos que coincidan con tu búsqueda')
@@ -94,7 +87,7 @@ const Products:React.FC = () => {
               <LateralPanel handleSubmit={null} setCategory={null} 
                             setMaxPrice={null} setMinPrice={null} 
                             setOrder={null} setRadio={null} radio={false}
-                            handleSale={null}/>
+                            handleSale={null} category={""} order={""}/>
                 <ProductsLoader/>
             </div>
         )
@@ -130,7 +123,7 @@ const Products:React.FC = () => {
             <LateralPanel   handleSubmit={handleSubmitFilters} setCategory={setCategory} 
                             setMaxPrice={setMaxPrice} setMinPrice={setMinPrice} 
                             setOrder={setOrder} setRadio={setRadio} radio={radio}
-                            handleSale={handleSale}/>
+                            handleSale={handleSale} category={category} order={order}/>
             <section className="productsResults">
                 {products.map((p:Product, i) => <ProductOne key={i} product={p}/>)}
             </section>

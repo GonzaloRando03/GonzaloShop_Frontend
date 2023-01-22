@@ -94,8 +94,8 @@ query($id: String!){
 
 
 export const ADD_VALORATION = gql`
-mutation($name: String!, $username: String!, $stars: Int!){
-    addValoration(ident: $name, username: $username, stars: $stars){
+mutation($name: String!, $username: String!, $stars: Int!, $text: String){
+    addValoration(ident: $name, username: $username, stars: $stars, text: $text){
         __typename
         ... on Product {
             name

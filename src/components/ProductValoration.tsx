@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import Stars from "./Stars";
-import { Valoration } from "../utils/types";
-import { useLazyQuery } from "@apollo/client";
+import { FormEvent, Valoration } from "../utils/types";
+import { useMutation } from "@apollo/client";
 import { ADD_VALORATION } from "../services/productsQueries";
+import { toastError, toastInfo } from "../utils/toast";
+
 
 interface ValorationsProps{
     valorations: Valoration[]
+}
+
+interface ValorationsFormProps{
+    name: string
+    setValorations: any
+    valorations: Valoration[] 
 }
 
 export const Valorations:React.FC<ValorationsProps> = props =>{
@@ -19,19 +27,39 @@ export const Valorations:React.FC<ValorationsProps> = props =>{
 }
 
 
-export const ValorationForm:React.FC = () => {
-    const [getValoration, result] = useLazyQuery(ADD_VALORATION) 
+export const ValorationForm:React.FC<ValorationsFormProps> = props => {
+    const [addValoration] = useMutation(ADD_VALORATION) 
     const [valorationText, setValorationText] = useState<string>("")
     const [valorationStars, setValorationStars] = useState<number>(5)
 
-    function handleValoration(){
-        getValoration({variables: {
-//continnuar por aqui maána
-        }})
+    function handleValoration(event: FormEvent){
+        event.preventDefault()
+        
+        let userJSON:any = window.localStorage.getItem('user')
+        let user:any = JSON.parse(userJSON)
+
+        if (userJSON !== null && valorationStars <= 5){
+            addValoration({variables: {
+                    name: props.name,
+                    username: user.username,
+                    text: valorationText,
+                    stars: valorationStars
+                }
+            })
+            props.setValorations([...props.valorations, {
+                username: user.username, 
+                text: valorationText, 
+                stars: valorationStars}
+            ])
+            toastInfo("Valoración añadida correctamente")
+
+        }else{
+            toastError("Necesitas estar registrado para publicar una valoración")
+        }
     }
 
     return(
-        <form className="valorationForm">
+        <form className="valorationForm" onSubmit={(e)=>handleValoration(e)}>
             <h2>Añade tu valoración</h2>
             <div className="flexCol">
                 Escribe lo que opines

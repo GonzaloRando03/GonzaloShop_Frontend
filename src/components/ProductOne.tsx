@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { GET_ONE_PRODUCT } from "../services/productsQueries";
 import { toastError } from "../utils/toast";
-import { Product } from "../utils/types";
+import { Product, Valoration } from "../utils/types";
 import Features from "./Features";
 import { ProductsLoader } from "./Loaders";
 import { ValorationForm, Valorations } from "./ProductValoration";
@@ -14,6 +14,7 @@ import Stars from "./Stars";
 const ProductOne:React.FC = () => {
     const [getProduct, result] = useLazyQuery(GET_ONE_PRODUCT) 
     const [imageIndex, setImageIndex] = useState<number>(0)
+    const [valorations, setValorations] = useState<Valoration[]>([])
     const [enableValorationForm, setValorationForm] = useState<boolean>(false)
     const [product, setProduct] = useState<Product>({
         id: "",
@@ -36,6 +37,7 @@ const ProductOne:React.FC = () => {
         console.log(result)
         if (result.data){
             setProduct(result.data.getProductOne)
+            setValorations(result.data.getProductOne.valorations)
         }
     }, [result])
 
@@ -107,11 +109,13 @@ const ProductOne:React.FC = () => {
                     }</button>
                     {
                         enableValorationForm
-                            ?<ValorationForm/>
+                            ?<ValorationForm name={product.id} 
+                                             setValorations={setValorations} 
+                                             valorations={valorations?valorations:[]}/>
                             :null
                     }
-                    <Valorations valorations={product.valorations
-                        ?product.valorations
+                    <Valorations valorations={valorations
+                        ?valorations
                         :[]}/>
                 </div>
             </div>

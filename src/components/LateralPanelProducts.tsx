@@ -11,6 +11,8 @@ interface PanelProps{
     setMinPrice: any
     radio: boolean
     handleSale: any
+    category: string
+    order: string
 }
 
 const LateralPanel:React.FC<PanelProps> = ({
@@ -20,7 +22,9 @@ const LateralPanel:React.FC<PanelProps> = ({
     setCategory, 
     setOrder, 
     setMaxPrice, 
-    setMinPrice
+    setMinPrice,
+    category,
+    order
 
 }) =><div className="flex">
     <section className="lateralPanel">
@@ -36,6 +40,7 @@ const LateralPanel:React.FC<PanelProps> = ({
             <div>
                 <h4>Categoría</h4>
                 <select className="categorySelect" 
+                        value={category}
                         onChange={(e)=>{
                             setCategory(e.target.value)
                     }
@@ -52,6 +57,7 @@ const LateralPanel:React.FC<PanelProps> = ({
             <div className="mt6 ">
                 <h4>Ordenar por</h4>
                 <select className="categorySelect"
+                        value={order}
                         onChange={(e)=>{
                             setOrder(e.target.value)
                     }

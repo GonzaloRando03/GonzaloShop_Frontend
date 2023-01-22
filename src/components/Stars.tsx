@@ -31,7 +31,7 @@ const Stars:React.FC<StarsProps> = props => {
                     :'grey'
             }/>
             <FontAwesomeIcon icon={faStar} className={
-                props.number >= 5
+                props.number >= 4.7
                     ?'orange'
                     :'grey'
             }/>
