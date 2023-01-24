@@ -39,6 +39,7 @@ const User:React.FC<LoginPropsTypes> = props => {
 
   function unlog(){
     window.localStorage.removeItem('user')
+    window.localStorage.removeItem('cart')
     props.setMenu(false)
     props.setUser(null)
     toastInfo('Sesión cerrada correctamente')
@@ -75,6 +76,7 @@ const User:React.FC<LoginPropsTypes> = props => {
           <div className='flex'>
             <FontAwesomeIcon icon={faUser} className='loginIcon'/>
             <h2>{props.user.name} {props.user.lastname}</h2>
+            <button className='showCart'>Ver carrito</button>
           </div>
 
           <section className='addWallet'>
@@ -90,7 +92,8 @@ const User:React.FC<LoginPropsTypes> = props => {
 
           <div className='mb-1'>Aviso: Estas operaciones <span className='color-secondary'>añadirán cargos</span> a tu tarjeta de crédito.</div>
           
-          <button onClick={() => unlog()}>Cerrar sesión</button>
+          <button>Ver pedidos</button>
+          <button onClick={() => unlog()} className='ml1'>Cerrar sesión</button>
           <button onClick={() => setDeleteAcount(!deleteAcount)} className='ml1'>
             {deleteAcount? 'Cancelar': 'Eliminar cuenta'}
           </button>

@@ -15,12 +15,21 @@ const Main: React.FC<Children> = props => {
     const [login, setLogin] = useState<boolean>(false)
     const [menu, setMenu] = useState<boolean>(false)
     const [user, setUser] = useState<any>(null)
+    const [cart, setCart] = useState<any[]>()
     const [searchTitle, setSearch] = useState<string>("")
     const navigate = useNavigate()
 
     useEffect(()=>{
         let userStorage:string | null = window.localStorage.getItem('user')
+        let cartStorage:string | null = window.localStorage.getItem('cart')
         
+        if (cartStorage === null){
+            window.localStorage.setItem('cart', JSON.stringify([]))
+            setCart([])
+        }else{
+            setCart(JSON.parse(cartStorage))
+        }
+
         if (userStorage !== null){
             let userJson:any = JSON.parse(userStorage)
             setUser(userJson)
@@ -60,11 +69,14 @@ const Main: React.FC<Children> = props => {
                 </form>
                 {
                     user? <span className="username flex" onClick={() => setMenu(true)}>
-                        <div className="infoHeader">
+                        <div className="infoHeader hover">
                             <FontAwesomeIcon icon={faUser} className='userInfoIcon'/> {user.username}
                         </div>
-                        <div>
+                        <div className="hover">
                             <FontAwesomeIcon icon={faWallet} className='userInfoIcon'/> {user.wallet.cantidad}€
+                        </div>
+                        <div className="hover">
+                            <FontAwesomeIcon icon={faCartShopping} className='userInfoIcon ml1'/>
                         </div>
                     </span>
 

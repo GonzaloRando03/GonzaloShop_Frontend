@@ -61,6 +61,31 @@ const ProductOne:React.FC = () => {
     }, [name])
 
 
+    function addToCart(){
+        let cartStorage:any = window.localStorage.getItem('cart')
+        let cartJSON:any = JSON.parse(cartStorage)
+        let counter = 0
+
+        cartJSON.forEach((e:any) => {
+            if (e.name = product.name){
+                counter++
+                e.cantidad++
+                e.price+=e.price
+                window.localStorage.setItem('cart', JSON.stringify(cartJSON))
+                return null
+            }
+        })
+
+        if(counter === 0){
+            cartJSON.push({
+                name: product.name,
+                price: product.price,
+                cantidad: 1,
+                image: product.images[0]
+            })
+            window.localStorage.setItem('cart', JSON.stringify(cartJSON))
+        }
+    }
 
     if(result.loading){
         return (
@@ -69,7 +94,6 @@ const ProductOne:React.FC = () => {
             </div>
         )
     }
-
 
     return (
         <div className="flex">
@@ -100,7 +124,8 @@ const ProductOne:React.FC = () => {
                     <Features features={product.features
                         ?product.features
                         :{}}/>
-                    <button className="buy">Comprar ahora</button><br/>
+                    <button className="buy"
+                            onClick={()=>addToCart()}>Comprar ahora</button><br/>
                     <button className="addValoration"
                         onClick={
                             ()=>setValorationForm(!enableValorationForm)

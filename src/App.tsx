@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { Routes, Route } from "react-router";
 import './styles/App.css';
 import ProductOne from './components/ProductOne';
+import Cart from './components/Cart';
 
 
 const App:React.FC = () => {
@@ -20,6 +21,7 @@ const App:React.FC = () => {
         <Route path='/products/:search' element={<Main><Products/></Main>}/>
         <Route path='/product/:name' element={<Main><ProductOne/></Main>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/cart' element={<Cart/>}/>
         <Route path="*" element={<div>404</div> }/>
       </Routes>
       <ToastContainer

@@ -40,9 +40,9 @@
 header{
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    width: 80%;
-    padding-left: 10%;
-    padding-right: 10%;
+    width: 90%;
+    padding-left: 8%;
+    padding-right: 2%;
     display: flex;
     top: 0;
     position: absolute;
@@ -389,14 +389,14 @@ footer{
 }
 
 .username{
-    text-align: center;
-    width: 20%;
+    text-align: right;
+    width: 30%;
     font-size: 15px;
     color: white;
     margin-top: 25px;
 }
 
-.username:hover{
+.hover:hover{
     cursor: pointer;
     color: var(--secondary-color);
 }
@@ -431,6 +431,13 @@ footer{
 .money:hover{
     box-shadow: 13px 19px 13px -13px rgba(0,0,0,0.1);
     background-color: rgb(236, 236, 236);
+}
+
+.showCart{
+    margin-left: 10px;
+    height: 30px;
+    margin-top: 20px;
+    border-radius: 4px;
 }
 
 .delete{
@@ -697,6 +704,29 @@ footer{
   
   .sendValoration:active{
     background-color: var(--primary-color-hover);
+  }
+
+  .cart{
+    border: solid 1px var(--bg-color-secondary);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+  }
+
+  .productoCart{
+    width: 90%;
+    margin-bottom: 50px;
+  }
+
+  .productoCart img{
+    width: 80%;
+    height: 25vh;
+    object-fit: cover;
+  }
+
+  .borderTop{
+    border-top: 1px solid var(--bg-color-secondary);
+    padding-top: 10px;
   }
 
 @keyframes fade {
