@@ -13,6 +13,7 @@ interface ValorationsProps{
 interface ValorationsFormProps{
     name: string
     setValorations: any
+    setValorationForm: any
     valorations: Valoration[] 
 }
 
@@ -52,6 +53,7 @@ export const ValorationForm:React.FC<ValorationsFormProps> = props => {
                 stars: valorationStars}
             ])
             toastInfo("Valoración añadida correctamente")
+            props.setValorationForm(false)
 
         }else{
             toastError("Necesitas estar registrado para publicar una valoración")

@@ -435,8 +435,8 @@ footer{
 
 .showCart{
     margin-left: 10px;
-    height: 30px;
-    margin-top: 20px;
+    height: 25px;
+    margin-top: 22px;
     border-radius: 4px;
 }
 
@@ -537,15 +537,15 @@ footer{
 .miniImagesDiv{
     width: 5%;
     margin-left: 1%;
-  }
+}
   
-  .contentProduct{
+.contentProduct{
     width: 88%;
     margin-left: 1%;
     display: flex;
-  }
+}
   
-  .miniImage{
+.miniImage{
     border: 1px solid var(--bg-color-secondary);
     padding: 2px;
     width: 95%;
@@ -553,15 +553,15 @@ footer{
     object-fit: cover;
     cursor: pointer;
     margin-top: 5px;
-  }
+}
   
-  .miniImage img{
+.miniImage img{
     width: 95%;
     height: 10vh;
     object-fit: cover;
-  }
+}
   
-  .principImage{
+.principImage{
     border: 1px solid var(--bg-color-secondary);
     width: 50%;
     height: 90vh;
@@ -569,44 +569,44 @@ footer{
     cursor: pointer;
     margin-top: 5px;
     margin-bottom: 50px;
-  }
+}
   
-  .principImage img{
+.principImage img{
     width: 100%;
     height: 90vh;
     object-fit: cover ;
-  }
+}
   
-  .productData{
+.productData{
     width: 45%;
     padding-top: 0px;
     padding: 1%;
-  }
+}
   
-  .productData p{
+.productData p{
     margin-bottom: 0px;
-  }
+}
   
-  .productPrice{
+.productPrice{
     font-size: 22px;
-  }
+}
   
-  .stars{
+.stars{
     color: orange;
-  }
+}
   
-  .productData h3{
+.productData h3{
     margin-bottom: 10px;
-  }
+}
   
-  .lineDown{
+.lineDown{
     border-bottom: 1px solid var(--bg-color-secondary);
     margin-top: 0px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-  }
+}
   
-  .buy{
+.buy{
     background-color: var(--primary-color);
     color: white;
     width: 30%;
@@ -615,13 +615,13 @@ footer{
     border: 0px;
     border-radius: 6px;
     cursor: pointer;
-  }
+}
   
-  .buy:active{
+.buy:active{
     background-color: var(--primary-color-hover);
-  }
+}
   
-  .addValoration{
+.addValoration{
     background-color: rgb(158, 157, 157);
     color: white;
     width: 30%;
@@ -630,26 +630,26 @@ footer{
     border: 0px;
     border-radius: 6px;
     cursor: pointer;
-  }
+}
   
-  .addValoration:active{
+.addValoration:active{
     background-color: grey;
-  }
+}
   
-  .features{
+.features{
     display: flex;
     flex-direction: column;
     line-height: 30px;
     margin-top: 10px;
-  }
+}
 
-  .grey{
+.grey{
     color: grey;
-  }
+}
 
-  .orange{
+.orange{
     color: orange;
-  }
+}
 
 .productOneValorations{
     border-top: solid 1px var(--bg-color-secondary);
@@ -690,7 +690,6 @@ footer{
 .valorationStars{
     margin-left: 10px;
 }
-
 .sendValoration{
     background-color: var(--primary-color);
     color: white;
@@ -700,34 +699,93 @@ footer{
     border: 0px;
     border-radius: 6px;
     cursor: pointer;
-  }
+}
   
-  .sendValoration:active{
+.sendValoration:active{
     background-color: var(--primary-color-hover);
-  }
+}
 
-  .cart{
+.cartContainer{
+    width: 50%;
+    display: flex;
+}
+
+.cart{
+    margin-top: 15px;
     border: solid 1px var(--bg-color-secondary);
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 20px;
-  }
+    width: 50%;
+    margin-right: 3pc;
+}
 
-  .productoCart{
+.productoCart{
     width: 90%;
     margin-bottom: 50px;
-  }
+}
 
-  .productoCart img{
+.productoCart img{
     width: 80%;
     height: 25vh;
     object-fit: cover;
-  }
+}
 
-  .borderTop{
+.borderTop{
     border-top: 1px solid var(--bg-color-secondary);
     padding-top: 10px;
-  }
+}
+
+.delProduct{
+    background-color: var(--primary-color);
+    border: 0px;
+    color: white;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delProduct:active{
+    background-color: var(--primary-color-hover);
+}
+
+.cartMenu{
+    width: 30%;
+    margin-left:30%;
+    position: fixed;
+}
+
+.buyCartButton{
+    width: 40%;
+    background-color: rgb(207, 207, 207);
+    border:0px;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.confirmCartButton{
+    width: 40%;
+    background-color: var(--primary-color);
+    color: white;
+    border:0px;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.confirmCartButton:active{
+    background-color: var(--primary-color-hover);
+}
+
+.direction{
+    border: 1px solid grey;
+    width: 90%;
+    margin-top: 7px;
+}
 
 @keyframes fade {
     from {

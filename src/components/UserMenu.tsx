@@ -17,7 +17,7 @@ interface LoginPropsTypes{
 
 
 //componente
-const User:React.FC<LoginPropsTypes> = props => {
+const UserMenu:React.FC<LoginPropsTypes> = props => {
 
   const [deleteAcount, setDeleteAcount] = useState<boolean>(false)
 
@@ -76,7 +76,9 @@ const User:React.FC<LoginPropsTypes> = props => {
           <div className='flex'>
             <FontAwesomeIcon icon={faUser} className='loginIcon'/>
             <h2>{props.user.name} {props.user.lastname}</h2>
-            <button className='showCart'>Ver carrito</button>
+            <Link to={'/cart'}>
+              <button className='showCart'>Ver carrito</button>
+            </Link>
           </div>
 
           <section className='addWallet'>
@@ -109,4 +111,4 @@ const User:React.FC<LoginPropsTypes> = props => {
   );
 }
 
-export default User;
+export default UserMenu;

@@ -2,7 +2,7 @@ import { useLazyQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { GET_ONE_PRODUCT } from "../services/productsQueries";
-import { toastError } from "../utils/toast";
+import { toastError, toastInfo } from "../utils/toast";
 import { Product, Valoration } from "../utils/types";
 import Features from "./Features";
 import { ProductsLoader } from "./Loaders";
@@ -62,15 +62,21 @@ const ProductOne:React.FC = () => {
 
 
     function addToCart(){
+        let userStorage:any = window.localStorage.getItem('user')
+        if (userStorage === null){
+            toastError('Necesitas estar logueado para comprar.')
+            return null
+        }
         let cartStorage:any = window.localStorage.getItem('cart')
         let cartJSON:any = JSON.parse(cartStorage)
         let counter = 0
 
         cartJSON.forEach((e:any) => {
-            if (e.name = product.name){
+            if (e.name === product.name){
                 counter++
+                e.price+=(e.price/e.cantidad)
+                e.price = parseFloat(e.price)
                 e.cantidad++
-                e.price+=e.price
                 window.localStorage.setItem('cart', JSON.stringify(cartJSON))
                 return null
             }
@@ -85,6 +91,7 @@ const ProductOne:React.FC = () => {
             })
             window.localStorage.setItem('cart', JSON.stringify(cartJSON))
         }
+        toastInfo('Producto añadido con éxito.')
     }
 
     if(result.loading){
@@ -125,7 +132,7 @@ const ProductOne:React.FC = () => {
                         ?product.features
                         :{}}/>
                     <button className="buy"
-                            onClick={()=>addToCart()}>Comprar ahora</button><br/>
+                            onClick={()=>addToCart()}>Añadir al carrito</button><br/>
                     <button className="addValoration"
                         onClick={
                             ()=>setValorationForm(!enableValorationForm)
@@ -135,7 +142,8 @@ const ProductOne:React.FC = () => {
                     {
                         enableValorationForm
                             ?<ValorationForm name={product.id} 
-                                             setValorations={setValorations} 
+                                             setValorations={setValorations}
+                                             setValorationForm={setValorationForm} 
                                              valorations={valorations?valorations:[]}/>
                             :null
                     }

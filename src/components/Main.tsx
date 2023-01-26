@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import Login from "./Login"
-import { Children, FormEvent } from "../utils/types"
+import { Children, FormEvent, ProductCart, User } from "../utils/types"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faMagnifyingGlass, faUser, faWallet } from '@fortawesome/free-solid-svg-icons'
-import User from "./User"
+import UserMenu from "./UserMenu"
 import { useNavigate } from "react-router"
 import { Link } from "react-router-dom"
 
@@ -14,8 +14,17 @@ const Main: React.FC<Children> = props => {
 
     const [login, setLogin] = useState<boolean>(false)
     const [menu, setMenu] = useState<boolean>(false)
-    const [user, setUser] = useState<any>(null)
-    const [cart, setCart] = useState<any[]>()
+    const [user, setUser] = useState<User>({
+        id: '',
+        name: '',
+        lastname: '',
+        username: '',
+        email: '',
+        password: '',
+        bank_account: '',
+        wallet: {}
+    })
+    const [cart, setCart] = useState<ProductCart[]>()
     const [searchTitle, setSearch] = useState<string>("")
     const navigate = useNavigate()
 
@@ -34,7 +43,7 @@ const Main: React.FC<Children> = props => {
             let userJson:any = JSON.parse(userStorage)
             setUser(userJson)
         }
-      },[])
+    },[])
 
 
     function handleSearch(event:FormEvent){
@@ -73,11 +82,11 @@ const Main: React.FC<Children> = props => {
                             <FontAwesomeIcon icon={faUser} className='userInfoIcon'/> {user.username}
                         </div>
                         <div className="hover">
-                            <FontAwesomeIcon icon={faWallet} className='userInfoIcon'/> {user.wallet.cantidad}€
+                            <FontAwesomeIcon icon={faWallet} className='userInfoIcon'/> {user.wallet?.cantidad?.toFixed(2)}€
                         </div>
-                        <div className="hover">
+                        <Link to={'/cart'} className="hover color-white">
                             <FontAwesomeIcon icon={faCartShopping} className='userInfoIcon ml1'/>
-                        </div>
+                        </Link>
                     </span>
 
                     :<span onClick={() => setLogin(true)} className="identify">
@@ -113,7 +122,7 @@ const Main: React.FC<Children> = props => {
 
             {menu? 
                 <div>
-                    <User setMenu={setMenu} setUser={setUser} user={user}/>
+                    <UserMenu setMenu={setMenu} setUser={setUser} user={user}/>
                     <div className="blackTransparentBg fadeAnimation5"></div>
                 </div>
             

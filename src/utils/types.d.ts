@@ -7,13 +7,31 @@ export interface Children{
 export type Event = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 export type FormEvent = React.FormEvent<HTMLFormElement | HTMLButtonElement>
 
+export interface ProductCart{
+    name: string
+    price: number
+    cantidad: number
+    image: string
+}
+
 export interface User{
+    id?: string
     name: string
     lastname: string
     username: string
     email: string
     password: string
     bank_account: string
+    wallet?: Wallet
+    token?: string
+}
+
+export interface Wallet{
+    cantidad?: number
+    id_usuario?: string
+    id?: string
+    descuento?: number
+    limite?: number
 }
 
 export interface Product{

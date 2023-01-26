@@ -28,6 +28,12 @@ const Login:React.FC<LoginPropsTypes> = props => {
       let loginResponse:LoginResponse = await loginService.sendLogin(loginValues)
       //guardamos el ususario en el storage
       window.localStorage.setItem('user', JSON.stringify(loginResponse))
+
+      let cartStorage:string | null = window.localStorage.getItem('cart')
+      
+      if (cartStorage === null){
+          window.localStorage.setItem('cart', JSON.stringify([]))
+      }
       toastInfo('Sesión iniciadada con éxito')
       props.setLogin(false)
       props.setUser(loginResponse)

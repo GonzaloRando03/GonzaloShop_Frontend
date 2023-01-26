@@ -40,6 +40,10 @@ input{
   color: var(--secondary-color);
 }
 
+.color-white{
+  color: white;
+}
+
 .text-center{
   text-align: center;
 }
