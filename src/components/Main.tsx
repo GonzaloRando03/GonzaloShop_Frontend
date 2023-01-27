@@ -67,7 +67,7 @@ const Main: React.FC<Children> = props => {
                     <input  type='text' 
                             className="search"
                             value={searchTitle}
-                            onChange={(e)=>{
+                            onChange={(e) => {
                                 setSearch(e.target.value)
                             }}/>
                     <Link to={`/products/${searchTitle}`}>
