@@ -39,7 +39,7 @@ const Main: React.FC<Children> = props => {
             setCart(JSON.parse(cartStorage))
         }
 
-        if (userStorage !== null){
+        if (userStorage !== null && JSON.parse(userStorage).username.length > 3){
             let userJson:any = JSON.parse(userStorage)
             setUser(userJson)
         }
@@ -77,7 +77,7 @@ const Main: React.FC<Children> = props => {
                     </Link>
                 </form>
                 {
-                    user? <span className="username flex" onClick={() => setMenu(true)}>
+                    user && user.username.length > 3? <span className="username flex" onClick={() => setMenu(true)}>
                         <div className="infoHeader hover">
                             <FontAwesomeIcon icon={faUser} className='userInfoIcon'/> {user.username}
                         </div>

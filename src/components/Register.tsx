@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import userService from '../services/userService';
-import { FormEvent, LoginResponse, User } from '../utils/types';
+import { FormEvent } from '../utils/types';
 import { Event } from '../utils/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css"
 import { toastError, toastInfo } from '../utils/toast';
+import { CREATE_USER } from '../services/userQueries';
+import { useMutation } from '@apollo/client';
 
 
 
@@ -25,22 +26,38 @@ interface FormValues{
 //componente
 const Register:React.FC = () => {
 
+  const [createUser, result] = useMutation(CREATE_USER) 
   const navigate = useNavigate()
 
   useEffect(()=>{
     let userStorage:string | null = window.localStorage.getItem('user')
-        
+      
     if (userStorage !== null){
         navigate('/home')
     }
   },[])
 
+  useEffect(()=>{
+    if(result.called && !result.loading){
+      if (result.data?.createUser.__typename === "User"){
+        //guardamos el ususario en el storage
+        console.log(result.data)
+        window.localStorage.setItem('user', JSON.stringify(result.data?.createUser))
+        toastInfo('Usuario creado con éxito')
+        navigate('/home')
+  
+      }else{
+        toastError(result.data.createUser.error)
+      }
+    }
+  },[result.loading])
+
   const [registerValues, setRegisterValues] = useState<FormValues>({
     username: "", password: "", password2: "", lastname:"", 
     email: "", name: "", bank_account: ""
   })
-
   const [passwordError, setPasswordError] = useState<boolean>(false)
+
 
 
   async function handleSubmit(event: FormEvent){
@@ -61,27 +78,19 @@ const Register:React.FC = () => {
           toastError('Todos los campos son obligatorios')
 
       }else{
-        const userToSend: User = {
+        createUser({variables: {
           name: registerValues.name,
-          lastname: registerValues.lastname,
           username: registerValues.username,
-          password: registerValues.password,
           email: registerValues.email,
-          bank_account: registerValues.bank_account
-        }
-  
-        let userLogin:LoginResponse = await userService.sendUser(userToSend)
-  
-        //guardamos el ususario en el storage
-        window.localStorage.setItem('user', JSON.stringify(userLogin))
-        toastInfo('Usuario creado con éxito')
-        navigate('/home')
+          password: registerValues.password,
+          bankAccount: registerValues.bank_account,
+          lastname: registerValues.lastname
+        }})
       }
 
     //mensaje de error
     }catch(error: any){
-      const errorText: string = error.response.data.error
-      toastError(errorText)
+      toastError('Error al crear el usuario')
     }
   }
 

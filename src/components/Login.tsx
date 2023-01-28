@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import loginService from '../services/loginService';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Event, FormEvent, LoginData, LoginResponse } from '../utils/types';
+import { Event, FormEvent, LoginData } from '../utils/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { toastError, toastInfo } from '../utils/toast';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../services/userQueries';
 
 //interfaces
 interface LoginPropsTypes{
@@ -17,26 +18,42 @@ interface LoginPropsTypes{
 //componente
 const Login:React.FC<LoginPropsTypes> = props => {
 
+  const [loginUser, result] = useMutation(LOGIN_USER) 
   const [loginValues, setLoginValues] = useState<LoginData>({
     username: "", password: ""
   })
 
 
+  useEffect(()=>{
+    if(result.called && !result.loading){
+      if (result.data?.loginUser.__typename === "User"){
+        //guardamos el ususario en el storage
+        window.localStorage.setItem('user', JSON.stringify(result.data?.loginUser))
+
+        let cartStorage:string | null = window.localStorage.getItem('cart')
+        
+        if (cartStorage === null){
+            window.localStorage.setItem('cart', JSON.stringify([]))
+        }
+        toastInfo('Sesión iniciadada con éxito')
+        props.setLogin(false)
+        props.setUser(result.data?.loginUser)
+  
+      }else{
+        toastError(result.data.loginUser.error)
+      }
+    }
+  },[result.loading])
+
+  
+
   async function handleLogin(event: FormEvent){
     event.preventDefault()
     try{
-      let loginResponse:LoginResponse = await loginService.sendLogin(loginValues)
-      //guardamos el ususario en el storage
-      window.localStorage.setItem('user', JSON.stringify(loginResponse))
-
-      let cartStorage:string | null = window.localStorage.getItem('cart')
-      
-      if (cartStorage === null){
-          window.localStorage.setItem('cart', JSON.stringify([]))
-      }
-      toastInfo('Sesión iniciadada con éxito')
-      props.setLogin(false)
-      props.setUser(loginResponse)
+      loginUser({variables: {
+        username: loginValues.username,
+        password: loginValues.password
+      }})
 
     }catch(error: any){
       const errorText: string = error.response.data.error

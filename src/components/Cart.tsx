@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css"
 import { toastError, toastInfo } from '../utils/toast';
 import { FormEvent, ProductCart, User } from '../utils/types';
-import buyService from '../services/buyService';
+import { useMutation } from '@apollo/client';
+import { ADD_BUY } from '../services/buyQueries';
 
 //función para formatear las fechas
 function formatFecha(fecha:Date){
@@ -39,6 +40,7 @@ const CartMenu:React.FC<CartMenuProps> = props => {
   })
 
   const navigate = useNavigate()
+  const [addBuy, result] = useMutation(ADD_BUY) 
   const [direction, setDirection] = useState<string>('')
   const precioConDescuento = props.totalPrice-((props.totalPrice*20)/100)
 
@@ -55,6 +57,32 @@ const CartMenu:React.FC<CartMenuProps> = props => {
   },[])
 
 
+  useEffect(()=>{
+    console.log(result)
+    if(result.called && !result.loading){
+      
+      if (result.data.sendBuy.__typename === "Compra"){
+        window.localStorage.setItem('cart', JSON.stringify([]))
+
+      if (user.wallet?.cantidad){
+        user.wallet.cantidad-=user.wallet?.descuento !== undefined && user.wallet.descuento > 0
+          ?precioConDescuento
+          :props.totalPrice
+      }
+
+      window.localStorage.setItem('user', JSON.stringify(user))
+      toastInfo('Compra realizada corréctamente')
+      navigate('/home')
+  
+      }else{
+        toastError(result.data.sendBuy.error)
+      }
+    }
+  },[result.loading])
+
+
+
+
   async function handleCartBuy(e:FormEvent){
     e.preventDefault()
     if (direction.length < 5){
@@ -68,12 +96,14 @@ const CartMenu:React.FC<CartMenuProps> = props => {
       fecha15.setDate(fecha15.getDate()+15)
       const fechaPedido:string = formatFecha(fechaActual)
       const fechaEntrega:string = formatFecha(fecha15)
-      
-      const compra:any = {
-        idUsuario: user.id,
+      const idUser = user.id? user.id: '0'
+
+      addBuy({variables: {
+        token: user.token,
+        idUsuario: parseInt(idUser),
         precioTotal: user.wallet?.descuento !== undefined && user.wallet.descuento > 0
-          ?precioConDescuento
-          :props.totalPrice,
+            ?precioConDescuento
+            :props.totalPrice,
         fechaPedido: fechaPedido,
         fechaEntrega: fechaEntrega,
         articulos: props.cart.map(p => ({
@@ -81,20 +111,7 @@ const CartMenu:React.FC<CartMenuProps> = props => {
           nombre: p.name, 
           cantidad: p.cantidad
         }))
-    }
-    
-    const request = await buyService.sendBuy(compra, user.token? user.token: null)
-    window.localStorage.setItem('cart', JSON.stringify([]))
-
-    if (user.wallet?.cantidad){
-      user.wallet.cantidad-=user.wallet?.descuento !== undefined && user.wallet.descuento > 0
-        ?precioConDescuento
-        :props.totalPrice
-    }
-
-    window.localStorage.setItem('user', JSON.stringify(user))
-    toastInfo('Compra realizada corréctamente')
-    navigate('/home')
+      }})
 
     } catch (error:any) {
       toastError('No tienes dinero suficiente para hacer este pedido.')

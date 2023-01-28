@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import loginService from '../services/loginService';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Event, FormEvent, LoginData, LoginResponse } from '../utils/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { toastError, toastInfo } from '../utils/toast';
-import userService from '../services/userService';
+import { useMutation } from '@apollo/client';
+import { ADD_MONEY, DEL_USER } from '../services/userQueries';
 
 //interfaces
 interface LoginPropsTypes{
@@ -20,15 +19,43 @@ interface LoginPropsTypes{
 const UserMenu:React.FC<LoginPropsTypes> = props => {
 
   const [deleteAcount, setDeleteAcount] = useState<boolean>(false)
+  const [addMoney, moneyRes] = useMutation(ADD_MONEY)
+  const [delUser, delRes] = useMutation(DEL_USER)
+
+
+  useEffect(()=>{
+    if(moneyRes.called && !moneyRes.loading){
+      if (moneyRes.data?.addMoney.__typename === "Cantidad"){
+        const userUpdate = {...props.user}
+        userUpdate.wallet.cantidad = moneyRes.data.addMoney.cantidad
+        window.localStorage.setItem('user', JSON.stringify(userUpdate))
+        props.setUser(userUpdate)
+        toastInfo('Añadido correctamente')
+  
+      }else{
+        toastError(moneyRes.data.addMoney.error)
+      }
+    }
+  },[moneyRes.loading])
+
+  useEffect(()=>{
+    if(delRes.called && !delRes.loading){
+      console.log(delRes)
+      window.localStorage.removeItem('user')
+      props.setMenu(false)
+      props.setUser(null)
+      toastInfo('Usuario eliminado correctamente')
+    }
+  },[delRes.loading])
+
+
 
   async function sendMoney(money:number){
     try{
-      const resWallet = await userService.handleMoney(money, props.user.username)
-      const userUpdate = {...props.user}
-      userUpdate.wallet.cantidad = resWallet.cantidad
-      window.localStorage.setItem('user', JSON.stringify(userUpdate))
-      props.setUser(userUpdate)
-      toastInfo('Añadido correctamente')
+      addMoney({variables: {
+        username: props.user.username,
+        money: money
+      }})
 
     }catch(error: any){
       const errorText: string = error.response.data.error
@@ -47,13 +74,9 @@ const UserMenu:React.FC<LoginPropsTypes> = props => {
 
   async function deleteUser(token:string){
     try{
-      const response = await userService.delUser(token)
-      console.log(response)
-      window.localStorage.removeItem('user')
-      props.setMenu(false)
-      props.setUser(null)
-      toastInfo('Usuario eliminado correctamente')
-
+      delUser({variables: {
+        token: token
+      }})
     }catch(error:any){
       const errorText: string = error.response.data.error
       toastError(errorText)
