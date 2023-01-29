@@ -57,6 +57,24 @@ export interface Valoration{
     stars: number
 }
 
+export interface Compra{
+    id?: number
+    fechaEntrega: string
+    fechaPedido: string
+    precioTotal: number
+    idUsuario?: number
+    articulos: Articulo[]
+    __typename?: string
+}
+
+export interface Articulo{
+    id?: number
+    nombre: string
+    cantidad: number
+    precio?: number
+    __typename?: string
+}
+
 export interface LoginData{
     username: string
     password: string

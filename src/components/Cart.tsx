@@ -64,15 +64,19 @@ const CartMenu:React.FC<CartMenuProps> = props => {
       if (result.data.sendBuy.__typename === "Compra"){
         window.localStorage.setItem('cart', JSON.stringify([]))
 
-      if (user.wallet?.cantidad){
-        user.wallet.cantidad-=user.wallet?.descuento !== undefined && user.wallet.descuento > 0
-          ?precioConDescuento
-          :props.totalPrice
-      }
+        if (user.wallet?.cantidad){
+          user.wallet.cantidad-=user.wallet?.descuento !== undefined && user.wallet.descuento > 0
+            ?precioConDescuento
+            :props.totalPrice
+        }
 
-      window.localStorage.setItem('user', JSON.stringify(user))
-      toastInfo('Compra realizada corréctamente')
-      navigate('/home')
+        if (user.wallet?.descuento && user.wallet?.descuento > 0){
+          user.wallet.descuento = 0
+        }
+
+        window.localStorage.setItem('user', JSON.stringify(user))
+        toastInfo('Compra realizada corréctamente')
+        navigate('/home')
   
       }else{
         toastError(result.data.sendBuy.error)

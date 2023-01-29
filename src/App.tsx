@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router";
 import './styles/App.css';
 import ProductOne from './components/ProductOne';
 import Cart from './components/Cart';
+import ShowBuy from './components/ShowBuy';
 
 
 const App:React.FC = () => {
@@ -22,7 +23,8 @@ const App:React.FC = () => {
         <Route path='/product/:name' element={<Main><ProductOne/></Main>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path="*" element={<div>404</div> }/>
+        <Route path='/compras' element={<ShowBuy/>}/>
+        <Route path="*" element={<h1 className='center'>404</h1> }/>
       </Routes>
       <ToastContainer
           position="top-right"

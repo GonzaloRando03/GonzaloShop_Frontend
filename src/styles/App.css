@@ -787,6 +787,35 @@ footer{
     margin-top: 7px;
 }
 
+.center table{
+    width: 70%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: 1px solid var(--bg-color-secondary);
+}
+
+th, td{
+    border: 1px solid var(--bg-color-secondary);    
+    margin: 0px;
+    text-align: center;
+}
+
+.articulosTable{
+    width: 50%;
+    text-align: left;
+}
+
+.articulosTable b{
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-left: 3%;
+}
+
+.pedidosTitle{
+    margin-left: 15%;
+    color: var(--primary-color);
+}
+
 @keyframes fade {
     from {
       opacity: 0;

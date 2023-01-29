@@ -24,49 +24,20 @@ export const ADD_BUY = gql`
     }
 `
 
-export const ADD_MONEY = gql`
-    mutation($money: Int!, $username: String!){
-        addMoney(money: $money, username: $username){
-            __typename
-                ... on Cantidad {
-                    cantidad
-                }
-                ... on Error {
-                    error
-                }
-        }
-    }
-`
-
-export const DEL_USER = gql`
-    mutation($token: String!){
-        delUser(token: $token){
-            __typename
-            ... on Message {
-                msg
-            }
-            ... on Error {
-                error
-            }
-        }
-    }
-`
-
-export const LOGIN_USER = gql`
-    mutation($username: String!, $password: String!){
-        loginUser(username: $username, password: $password){
-            __typename
-            ... on User {
+export const GET_BUY = gql`
+    mutation($idUsuario: Int!, $token: String!){
+        getBuy(idUsuario: $idUsuario, token: $token){
+        __typename
+            ... on Compra {
                 id
-                name
-                lastname
-                username
-                token
-                bank_account
-                wallet {
+                idUsuario
+                fechaEntrega
+                fechaPedido
+                precioTotal
+                articulos {
+                    nombre
+                    precio
                     cantidad
-                    descuento
-                    limite
                 }
             }
             ... on Error {

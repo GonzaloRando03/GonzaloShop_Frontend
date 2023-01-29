@@ -117,7 +117,9 @@ const UserMenu:React.FC<LoginPropsTypes> = props => {
 
           <div className='mb-1'>Aviso: Estas operaciones <span className='color-secondary'>añadirán cargos</span> a tu tarjeta de crédito.</div>
           
-          <button>Ver pedidos</button>
+          <Link to={'/compras'}>
+              <button>Ver pedidos</button>
+            </Link>
           <button onClick={() => unlog()} className='ml1'>Cerrar sesión</button>
           <button onClick={() => setDeleteAcount(!deleteAcount)} className='ml1'>
             {deleteAcount? 'Cancelar': 'Eliminar cuenta'}
