@@ -49,7 +49,7 @@ const Oferts: React.FC = () =>{
         return <HomeLoader/>
     }
 
-    const products:Product[] = res.data.getProducts
+    const products:Product[] = res.data.getProducts.slice(0, 6);
 
     return(
         <div className="oferts">
