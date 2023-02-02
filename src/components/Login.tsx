@@ -35,7 +35,7 @@ const Login:React.FC<LoginPropsTypes> = props => {
         if (cartStorage === null){
             window.localStorage.setItem('cart', JSON.stringify([]))
         }
-        toastInfo('Sesión iniciadada con éxito')
+        toastInfo('Sesión iniciada con éxito')
         props.setLogin(false)
         props.setUser(result.data?.loginUser)
   
@@ -98,6 +98,7 @@ const Login:React.FC<LoginPropsTypes> = props => {
             <div className='flexCol'>
               Nombre de usuario
               <input type='text' 
+                     id='usernameLogin'
                      value={loginValues.username}
                      onChange={(e) => handleName(e)}
               />
@@ -105,11 +106,12 @@ const Login:React.FC<LoginPropsTypes> = props => {
             <div className='flexCol'>
               Contraseña
               <input type='password' 
+                     id='passwordLogin'
                      value={loginValues.password}
                      onChange={(e) => handlePass(e)}
               />
             </div>
-            <button type='submit'>Inicia sesión</button>
+            <button type='submit' id='loginButton'>Inicia sesión</button>
           </form>
 
           <Link className='registerLink' to={"/register"}>

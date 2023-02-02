@@ -65,10 +65,6 @@ const Register:React.FC = () => {
 
     try {
       //comprobamos los campos
-      if(registerValues.bank_account.length !== 20){
-        toastError('El número de cuenta debe tener 20 dígitos')
-      }
-
       if (registerValues.name.length < 3 ||
         registerValues.password.length < 3 ||
         registerValues.lastname.length < 0 ||
@@ -78,6 +74,10 @@ const Register:React.FC = () => {
           toastError('Todos los campos son obligatorios')
 
       }else{
+        if(registerValues.bank_account.length !== 20){
+          toastError('El número de cuenta debe tener 20 dígitos')
+          return null
+        }
         createUser({variables: {
           name: registerValues.name,
           username: registerValues.username,
@@ -140,6 +140,7 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Nombre</b>
                     <input type='text' 
+                     id='nameInput'
                      placeholder='Escribe solo el nombre'
                      value={registerValues.name}
                      onChange={(e) => handleChange(e, 'name')}
@@ -148,6 +149,7 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Apellidos</b>
                     <input type='text' 
+                     id='lastNameInput'
                      value={registerValues.lastname}
                      placeholder='Escribe aquí tus apellidos'
                      onChange={(e) => handleChange(e, 'lastname')}
@@ -156,6 +158,7 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Correo electrónico</b>
                     <input type='email' 
+                     id='emailInput'
                      value={registerValues.email}
                      onChange={(e) => handleChange(e, 'email')}
                     />
@@ -163,6 +166,7 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Número de cuenta</b>
                     <input type='text' 
+                     id='bankInput'
                      value={registerValues.bank_account}
                      pattern="[0-9]{20}"
                      onChange={(e) => handleChange(e, 'bank_account')}
@@ -171,6 +175,7 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Nombre de usuario</b>
                     <input type='text' 
+                     id='usernameInput'
                      value={registerValues.username}
                      placeholder='Nombre de tu usuario de GonzaloShop'
                      onChange={(e) => handleChange(e, 'username')}
@@ -179,17 +184,19 @@ const Register:React.FC = () => {
                   <div className='flexCol'>
                     <b>Contraseña</b>
                     <input type='password' 
+                     id='password1'
                      value={registerValues.password}
                      onChange={(e) => handleChange(e, 'password')}
                     />
                     {passwordError? <span className='error'>Las contraseñas no coinciden.</span>: null}
                     <input type='password' 
+                     id='password2'
                      value={registerValues.password2}
                      placeholder='Repite tu contraseña'
                      onChange={(e) => handleChange(e, 'password2')}
                     />
                   </div>
-                  <button type='submit'>Continuar</button>
+                  <button type='submit' id='createUserButton'>Continuar</button>
                 </form>
 
                 <span className='avisoRegister'>

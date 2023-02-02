@@ -66,18 +66,19 @@ const Main: React.FC<Children> = props => {
                 <form>
                     <input  type='text' 
                             className="search"
+                            id="searchInput"
                             value={searchTitle}
                             onChange={(e) => {
                                 setSearch(e.target.value)
                             }}/>
                     <Link to={`/products/${searchTitle}`}>
-                        <button className='searchIcon' type="submit">
+                        <button className='searchIcon' type="submit" id="searchButton">
                             <FontAwesomeIcon icon={faMagnifyingGlass}/>
                         </button>
                     </Link>
                 </form>
                 {
-                    user && user.username.length > 3? <span className="username flex" onClick={() => setMenu(true)}>
+                    user && user.username.length > 3? <span id="userMenu" className="username flex" onClick={() => setMenu(true)}>
                         <div className="infoHeader hover">
                             <FontAwesomeIcon icon={faUser} className='userInfoIcon'/> {user.username}
                         </div>
@@ -89,7 +90,7 @@ const Main: React.FC<Children> = props => {
                         </Link>
                     </span>
 
-                    :<span onClick={() => setLogin(true)} className="identify">
+                    :<span onClick={() => setLogin(true)} className="identify" id="identify">
                         Hola! Identifícate
                     </span>
                 }

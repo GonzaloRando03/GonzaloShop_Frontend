@@ -34,12 +34,13 @@ const LateralPanel:React.FC<PanelProps> = ({
         </div>
         <h1>Filtros</h1>
         <form onSubmit={(e)=>handleSubmit(e)}>
-            <button type='submit' className="filterApply">
+            <button type='submit' className="filterApply" id="applyFilters">
                 Aplicar filtros
             </button>
             <div>
                 <h4>Categoría</h4>
                 <select className="categorySelect" 
+                        id="category"
                         value={category}
                         onChange={(e)=>{
                             setCategory(e.target.value)

@@ -132,6 +132,7 @@ const ProductOne:React.FC = () => {
                         ?product.features
                         :{}}/>
                     <button className="buy"
+                            id="addToCartButton"
                             onClick={()=>addToCart()}>Añadir al carrito</button><br/>
                     <button className="addValoration"
                         onClick={

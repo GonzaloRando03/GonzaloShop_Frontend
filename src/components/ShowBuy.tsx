@@ -61,7 +61,7 @@ const ShowBuy:React.FC = () => {
     const fechaEntregaDate = new Date (fechaEntrega + 'T03:00:00')
     const fechaReparto = new Date (fechaPedido + 'T03:00:00')
     fechaReparto.setDate(fechaReparto.getDate() + 3)
-    if( today > fechaReparto ){
+    if( today > fechaReparto && today < fechaEntregaDate ){
       return "Pedido enviado"
     }else if (today > fechaEntregaDate){
       return "Entregado"

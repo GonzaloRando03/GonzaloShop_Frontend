@@ -120,13 +120,13 @@ const UserMenu:React.FC<LoginPropsTypes> = props => {
           <Link to={'/compras'}>
               <button>Ver pedidos</button>
             </Link>
-          <button onClick={() => unlog()} className='ml1'>Cerrar sesión</button>
-          <button onClick={() => setDeleteAcount(!deleteAcount)} className='ml1'>
+          <button onClick={() => unlog()} className='ml1' id='unlogButton'>Cerrar sesión</button>
+          <button onClick={() => setDeleteAcount(!deleteAcount)} className='ml1' id='delUserButton'>
             {deleteAcount? 'Cancelar': 'Eliminar cuenta'}
           </button>
 
           {deleteAcount? <section>
-            Los cambios no serán reversibles, si está seguro que quiere <br/> eliminar su cuenta pulse <b onClick={()=>deleteUser(props.user.token)} className='delete'>eliminar</b>.
+            Los cambios no serán reversibles, si está seguro que quiere <br/> eliminar su cuenta pulse <b id='confirmDelUser' onClick={()=>deleteUser(props.user.token)} className='delete'>eliminar</b>.
           </section>:null}
 
         </section>
