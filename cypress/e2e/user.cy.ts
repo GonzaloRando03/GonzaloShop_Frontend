@@ -5,7 +5,6 @@ describe('Testing create user', () => {
   
     it('El menú nologin funciona correctamente', () => {
         cy.visit('http://localhost:3000')
-        cy.wait(6000)
         cy.get('#identify').click()
         cy.contains('Inicia')
     })
@@ -54,7 +53,6 @@ describe('Testing create user', () => {
 describe('Testing login', () => {
     beforeEach(function() {
         cy.visit('http://localhost:3000/')
-        cy.wait(6000)
     })
   
     it('Error contraseña incorrecta', () => {
@@ -90,7 +88,7 @@ describe('Testing login', () => {
         cy.get('#usernameLogin').type('usuarioPrueba1')
         cy.get('#passwordLogin').type('12345')
         cy.get('#loginButton').click()
-        cy.wait(4000)
+        cy.wait(6000)
         cy.get('#userMenu').click()
         cy.get('#unlogButton').click()
         cy.contains('Sesión cerrada correctamente')
@@ -102,7 +100,7 @@ describe('Testing login', () => {
         cy.get('#usernameLogin').type('usuarioPrueba1')
         cy.get('#passwordLogin').type('12345')
         cy.get('#loginButton').click()
-        cy.wait(4000)
+        cy.wait(6000)
         cy.get('#userMenu').click()
         cy.get('#delUserButton').click()
         cy.get('#confirmDelUser').click()

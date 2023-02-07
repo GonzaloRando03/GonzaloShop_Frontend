@@ -135,6 +135,7 @@ const ProductOne:React.FC = () => {
                             id="addToCartButton"
                             onClick={()=>addToCart()}>Añadir al carrito</button><br/>
                     <button className="addValoration"
+                        id="addValorationButton"
                         onClick={
                             ()=>setValorationForm(!enableValorationForm)
                     }>{

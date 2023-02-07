@@ -108,9 +108,9 @@ const UserMenu:React.FC<LoginPropsTypes> = props => {
             <h3>Añade dinero a tu monedero</h3>
             <div className='center'>
               <div className='flex'>
-                <div className='money' onClick={()=>sendMoney(10)}>10€</div>
-                <div className='money' onClick={()=>sendMoney(20)}>20€</div>
-                <div className='money' onClick={()=>sendMoney(50)}>50€</div>
+                <div id='10' className='money' onClick={()=>sendMoney(10)}>10€</div>
+                <div id='20' className='money' onClick={()=>sendMoney(20)}>20€</div>
+                <div id='50' className='money' onClick={()=>sendMoney(50)}>50€</div>
               </div>
             </div>
           </section>

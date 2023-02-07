@@ -84,7 +84,7 @@ export const ValorationForm:React.FC<ValorationsFormProps> = props => {
                     <option>5</option>
                 </select>
             </div>
-            <button type="submit" className="sendValoration">Enviar valoración</button>
+            <button type="submit" id="sendValoratión" className="sendValoration">Enviar valoración</button>
         </form>
     )
 }
