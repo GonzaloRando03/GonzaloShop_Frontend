@@ -6,13 +6,13 @@ import App from './App';
 import { 
   ApolloClient, ApolloProvider, HttpLink, InMemoryCache
 } from '@apollo/client'
-
+import { GQL_ADDR } from './utils/env';
 
 //cliente apollo
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'http://localhost:4000',
+    uri: GQL_ADDR,
   })
 })
 

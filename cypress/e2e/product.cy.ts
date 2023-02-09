@@ -54,6 +54,44 @@ describe('Interacción con productos', () => {
         cy.get('#sendValoratión').click()
         cy.contains('añadida correctamente')
     })
+
+    it('Añadir producto al carrito', () => {
+        cy.get('#identify').click()
+        cy.contains('Inicia')
+        cy.get('#usernameLogin').type('usuarioPrueba1')
+        cy.get('#passwordLogin').type('12345')
+        cy.get('#loginButton').click()
+        cy.contains('Sesión iniciada con éxito')
+        cy.wait(6000)
+        cy.get('#addToCartButton').click()
+        cy.contains('añadido')
+    })
+
+    it('Comprar producto', () => {
+        cy.get('#identify').click()
+        cy.contains('Inicia')
+        cy.get('#usernameLogin').type('usuarioPrueba1')
+        cy.get('#passwordLogin').type('12345')
+        cy.get('#loginButton').click()
+        cy.contains('Sesión iniciada con éxito')
+        cy.wait(6000)
+        cy.visit('http://localhost:3000/cart')
+        cy.get('#direction').type('dirección falsa para prueba')
+        cy.get('#confirmBuy').click()
+        cy.contains('Compra realizada')
+    })
+
+    it('Ver estado de envío', () => {
+        cy.get('#identify').click()
+        cy.contains('Inicia')
+        cy.get('#usernameLogin').type('usuarioPrueba1')
+        cy.get('#passwordLogin').type('12345')
+        cy.get('#loginButton').click()
+        cy.contains('Sesión iniciada con éxito')
+        cy.wait(6000)
+        cy.visit('http://localhost:3000/compras')
+        cy.contains('1')
+    })
   
     it('Eliminar usuario', () => {
         cy.get('#identify').click()

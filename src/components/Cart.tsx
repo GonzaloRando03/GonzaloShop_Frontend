@@ -147,11 +147,13 @@ const CartMenu:React.FC<CartMenuProps> = props => {
           <input className='direction' 
                  onChange={(e)=>setDirection(e.target.value)} 
                  type='text'
+                 id='direction'
                  placeholder='Introduce tu dirección'
           />
           <button className='buyCartButton'
                   onClick={()=>navigate('/home')}>Seguir comprando</button>
           <button className='confirmCartButton'
+                  id='confirmBuy'
                   type='submit'>Hacer pedido</button>
         </form>
       </div>
