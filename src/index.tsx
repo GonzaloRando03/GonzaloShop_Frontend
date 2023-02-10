@@ -12,7 +12,7 @@ import { GQL_ADDR } from './utils/env';
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: GQL_ADDR,
+    uri: GQL_ADDR + '/graphql',
   })
 })
 

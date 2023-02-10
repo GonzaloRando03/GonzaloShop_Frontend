@@ -1,1 +1,1 @@
-export const GQL_ADDR = 'http://localhost:4000'
+export const GQL_ADDR = 'http://127.0.0.1:4000'
