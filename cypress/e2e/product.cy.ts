@@ -1,10 +1,10 @@
 describe('Preparación del usuario', () => {
     beforeEach(function() {
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:3001/')
     })
 
     it('Creación de usuario para interacción', () => {
-        cy.visit('http://localhost:3000/register')
+        cy.visit('http://localhost:3001/register')
         cy.get('#nameInput').type('nombre1')
         cy.get('#lastNameInput').type('apellido1')
         cy.get('#emailInput').type('correo@prueba.es')
@@ -33,7 +33,7 @@ describe('Preparación del usuario', () => {
 
 describe('Interacción con productos', () => {
     beforeEach(function() {
-        cy.visit('http://localhost:3000/product/63e2923e6154ac65cc7dc003')
+        cy.visit('http://localhost:3001/product/6447b73c262de0cf3a661671')
     })
 
     it('Añadir valoración error', () => {
@@ -75,7 +75,7 @@ describe('Interacción con productos', () => {
         cy.get('#loginButton').click()
         cy.contains('Sesión iniciada con éxito')
         cy.wait(6000)
-        cy.visit('http://localhost:3000/cart')
+        cy.visit('http://localhost:3001/cart')
         cy.get('#direction').type('dirección falsa para prueba')
         cy.get('#confirmBuy').click()
         cy.contains('Compra realizada')
@@ -89,7 +89,7 @@ describe('Interacción con productos', () => {
         cy.get('#loginButton').click()
         cy.contains('Sesión iniciada con éxito')
         cy.wait(6000)
-        cy.visit('http://localhost:3000/compras')
+        cy.visit('http://localhost:3001/compras')
         cy.contains('1')
     })
   

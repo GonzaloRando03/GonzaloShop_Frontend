@@ -1,10 +1,10 @@
 describe('Testing create user', () => {
     beforeEach(function() {
-        cy.visit('http://localhost:3000/register')
+        cy.visit('http://localhost:3001/register')
     })
   
     it('El menú nologin funciona correctamente', () => {
-        cy.visit('http://localhost:3000')
+        cy.visit('http://localhost:3001')
         cy.get('#identify').click()
         cy.contains('Inicia')
     })
@@ -52,7 +52,7 @@ describe('Testing create user', () => {
 
 describe('Testing login', () => {
     beforeEach(function() {
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:3001/')
     })
   
     it('Error contraseña incorrecta', () => {

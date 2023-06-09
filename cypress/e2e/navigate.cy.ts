@@ -1,6 +1,6 @@
 describe('Testing del home', () => {
   beforeEach(function() {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3001')
   })
 
   it('El home carga correctamente', () => {
@@ -17,7 +17,7 @@ describe('Testing de los productos', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
       return false
     })
-    cy.visit('http://localhost:3000/products/')
+    cy.visit('http://localhost:3001/products/')
   })
 
   it('Aparecen los productos', () => {
@@ -44,13 +44,13 @@ describe('Testing de los productos', () => {
   })
 
   it('Filtrar por disco', () => {
-    cy.visit('http://localhost:3000/products/disco')
+    cy.visit('http://localhost:3001/products/disco')
     cy.wait(1000)
     cy.contains('Kingston')
   })
 
   it('Entrar en un producto', () => {
-    cy.visit('http://localhost:3000/product/63e2923e6154ac65cc7dc003')
+    cy.visit('http://localhost:3001/product/6447b73c262de0cf3a66166e')
     cy.wait(1000)
     cy.contains('Kingston')
     cy.contains('Capacidad')
@@ -58,7 +58,7 @@ describe('Testing de los productos', () => {
   })
 
   it('Error al intentar comprar un producto sin estar logueado', () => {
-    cy.visit('http://localhost:3000/product/63e2923e6154ac65cc7dc003')
+    cy.visit('http://localhost:3001/product/6447b73c262de0cf3a66166e')
     cy.wait(1000)
     cy.contains('Kingston')
     cy.get('#addToCartButton').click()

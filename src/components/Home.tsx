@@ -42,7 +42,7 @@ const Products: React.FC = () =>{
 } 
 
 
-const Oferts: React.FC = () =>{
+const Offerts: React.FC = () =>{
     const res: QueryResult<any> = useQuery(PRODUCTS_HOME_OFFERT)
 
     if (res.loading){
@@ -81,7 +81,7 @@ const Home: React.FC = () =>{
                 </Link>
             </section>
             <section className="center">
-                <Oferts/>
+                <Offerts/>
             </section>
 
             

@@ -102,19 +102,15 @@ const Products:React.FC = () => {
 
     function handleSubmitFilters(event:SubmitEvent){
         event.preventDefault()    
-        if(radio){
-            getProducts({variables: {sale: true}})
-
-        }else{
-            const variables = {
-                search: search, 
-                price: [maxPrice, minPrice], 
-                category:category, 
-                order:order, 
-                
-            }
-            getProducts({variables: variables})
+        const variables = {
+            sale: radio,
+            search: search, 
+            price: [maxPrice, minPrice], 
+            category:category, 
+            order:order, 
+            
         }
+        getProducts({variables: variables})
     }
 
 
